@@ -1,0 +1,7 @@
+[aimspice]
+[description]
+28
+CS-capacitor
+
+CS N2 vss 3p
+[end]

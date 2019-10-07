@@ -1,0 +1,30 @@
+[aimspice]
+[description]
+191
+MN2-transistor
+
+.include p18_model_card.inc
+.include p18_cmos_models.inc
+
+.param L=1.08U
+.param W=2.16U
+
+vds N2 vss dc 1.8
+vgs ERASE vss dc 0.9
+
+MN2 N2 ERASE vss vss NMOS L=L W=W
+
+[dc]
+1
+vds
+0
+1.8
+0.1
+[ana]
+1 1
+0
+1 1
+1 1 -3E-05 -5.83052E-21
+1
+i(vds)
+[end]

@@ -1,0 +1,44 @@
+[aimspice]
+[description]
+524
+Complete-analog-circuit
+
+.connect vdd N1
+
+.param L1=1.08U
+.param W1=2.16U
+.param L2=1.08U
+.param W2=2.16U
+.param L3=1.08U
+.param W3=2.16U
+.param L4=1.08U
+.param W5=2.16U
+
+.include photo_diode.inc
+.include p18_cmos_models.inc
+.include p18_model_card.inc
+
+vdd vdd vss dc 1.8
+vEXPOSEs EXPOSE vss dc 0.9
+vERASEs ERASE vss dc 0.9
+vNREs NRE OUT dc 0.9
+
+MN1 N1 EXPOSE N2 vss NMOS L=L1 W=W1
+MN2 N2 ERASE vss vss NMOS L=L2 W=W2
+CS N2 vss 3p
+MP3 vss N2 N3 vdd PMOS L=L3 W=W3
+MP4 N3 NRE OUT vdd PMOS L=L4 W=W4
+[dc]
+1
+vdd
+0
+1.8
+0.1
+[ana]
+1 1
+0
+1 1
+1 1 0 5
+1
+i(vdd)
+[end]

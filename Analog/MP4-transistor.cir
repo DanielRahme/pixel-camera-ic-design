@@ -1,0 +1,29 @@
+[aimspice]
+[description]
+185
+MP4-transistor
+
+.include p18_cmos_models.inc
+.include p18_model_card.inc
+
+.param L=1.08U
+.param W=2.16U
+
+vds N3 OUT dc 1.8
+vgs NRE OUT dc 0.9
+
+MP4 N3 NRE OUT vdd PMOS L=L W=W
+[dc]
+1
+vds
+0
+1.8
+0.1
+[ana]
+1 1
+0
+1 1
+1 1 -1.2E-05 -5.69448E-48
+1
+i(vds)
+[end]

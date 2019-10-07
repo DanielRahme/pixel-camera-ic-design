@@ -1,0 +1,28 @@
+[aimspice]
+[description]
+189
+MN1-transistor
+
+.include p18_model_card.inc
+.include p18_cmos_models.inc
+
+.param L=1.08U
+.param W=2.16U
+
+vds N1 vss dc 1.8
+vgs EXPOSE vss dc 0.9
+MN1 N1 EXPOSE vss vss NMOS L=L W=W
+[dc]
+1
+vds
+0
+1.8
+0.1
+[ana]
+1 1
+0
+1 1
+1 1 -5E-05 0.0002
+1
+v(mn1.drain)
+[end]
