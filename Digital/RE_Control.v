@@ -32,4 +32,34 @@ module RE_Control(
     output Expose,
     output Erase
     );
+
+    // 8-bit counter
+    reg [7:0] exp_counter;  
+    reg expose_out;
+
+    assign Expose = expose_out;
+    
+    always @(posedge Clk)
+    begin
+        if (Reset) begin
+            exp_counter <= 0;
+        end
+        else begin
+            exp_counter <= exp_counter + 1;
+        end
+    end
+
+
+    always @(posedge Clk) 
+    begin
+        if (exp_counter < 10) begin
+            expose_out <= 1'b1;
+            //Expose <= 1'b1;
+        end
+        else begin
+            expose_out <= 1'b0;
+            //Expose <= 1'b0;
+        end
+    end
+
 endmodule
