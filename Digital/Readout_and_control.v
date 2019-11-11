@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ms / 1us
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -32,7 +32,7 @@ module Readout_and_control(
 
     wire NRE_1, NRE_2, ADC, Expose, Erase;
 
-    RE_Control control1(
+    controller control1(
         .Exp_increase(Increase_time),
         .Exp_decrease(Decrease_time),
         .Init(Take_a_picture),
