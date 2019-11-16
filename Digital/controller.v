@@ -1,19 +1,20 @@
 `timescale 1ms / 1ms
 
 module controller(
+    // Inputs
     input Reset,
     input Clk,
     input Exp_increase,
     input Exp_decrease,
     input Init,
 
+    // Outputs
     output reg NRE_1,
     output reg NRE_2,
     output reg ADC,
     output reg Erase,
     output reg Expose
     );
-
 
     //------ Internal regs and wires
     reg [2:0] state = 0;
@@ -23,11 +24,10 @@ module controller(
     reg readout_start = 0;
     reg [4:0] exp_counter = 0;  
     reg [2:0] readout_counter = 0;  
-    reg [4:0] exp_limit  = 2;
+    reg [4:0] exp_limit  = 10;
     reg [2:0] readout_limit  = 7;
-    //reg expose_out = 0;
-    //reg Y_nxt;
 
+    // Finite State Machine
     always @(posedge Clk) begin
         if (Reset == 1) begin
             NRE_1 <= 1;
@@ -123,10 +123,10 @@ module controller(
 
 
 
-    // Increase/Decrease Exposure
+    // Increase/Decrease Exposure time
     always @(posedge Clk) begin
         if (Reset == 1) begin
-            exp_limit <= 2;
+            exp_limit <= 10;
 
         end else if (Exp_increase == 1) begin
             exp_limit <= (exp_limit >= 70 
@@ -161,49 +161,4 @@ module controller(
             readout_counter <= readout_counter + 1;
         end
     end
-
-/*
-    always @(posedge Clk) 
-    begin
-        if (exp_counter < exp_limit) begin
-            Expose <= 1'b1;
-            //Expose <= 1'b1;
-        end
-        else begin
-            Expose <= 1'b0;
-            //Expose <= 1'b0;
-        end
-    end
-    */
-/*
-    always @(posedge Clk) begin
-        if (Reset == 1) begin
-            state <= IDLE;
-
-        end else begin
-            case (state)
-                IDLE: begin
-                    if (Init == 1) begin
-                        state <= EXPOSURE;
-                    end
-                end
-
-                EXPOSURE: begin
-                    if (exp_counter == exp_limit) begin
-                        state <= READOUT;
-                    end
-                end
-
-                READOUT: begin
-                    state <= IDLE;
-                end
-
-                default: begin
-                    state <= IDLE;
-                end
-            endcase
-        end
-    end
-    */
-
 endmodule

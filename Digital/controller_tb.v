@@ -38,9 +38,9 @@ module controller_tb(
     );
 
     always begin
-        Clk_tb = 0;
-        #HALF_PERIOD;
         Clk_tb = 1;
+        #HALF_PERIOD;
+        Clk_tb = 0;
         #HALF_PERIOD;
     end
 
@@ -60,6 +60,22 @@ module controller_tb(
         #PERIOD;
         #PERIOD;
         #PERIOD;
+        
+        // Decrease with 10ms 
+        Exp_decrease_tb = 1;
+        #PERIOD;
+        #PERIOD;
+        #PERIOD;
+        #PERIOD;
+        #PERIOD;
+        #PERIOD;
+        #PERIOD;
+        #PERIOD;
+        #PERIOD;
+        #PERIOD;
+        Exp_decrease_tb = 0;
+        #PERIOD;
+      
 
         // Init, take a picture
         Init_tb = 1;
