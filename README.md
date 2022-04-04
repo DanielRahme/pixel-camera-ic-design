@@ -4,4 +4,4 @@ Design of a 4-pixel camera. Digital control circuit designed using Verilog and a
 
 #### Group members:
 - Daniel R.
-- Erland L. G.
+- Erlend L. G.
